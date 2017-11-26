@@ -6,27 +6,36 @@ namespace Battleship
     {
         public int BoardSize { get; } = 10;
 
-        private char[,] BattleField { get; }
+        public char[,] BattleField { get; }
 
         public Board(int boardSize = 10)
         {
-            if (boardSize <= 10)
+#warning Pagalvoti, gal galima supaprastinti sąlygą? Gal Vytas pataisys.
+            if (boardSize >= 26)
             {
-                BattleField = new char[BoardSize, BoardSize];
+                BoardSize = 26;
             }
             else
             {
-                BoardSize = boardSize;
-                BattleField = new char[BoardSize, BoardSize];
-            }            
+                if (boardSize < 10)
+                {
+                    BoardSize = 10;
+                }
+                else
+                {
+                    BoardSize = boardSize;
+                }
+            }
+
+            BattleField = new char[BoardSize, BoardSize];
         }
 
         public void PrintBoard()
         {
-            Console.WriteLine($"  1 2 3 4 5 6 7 8 9 10");
+            Console.WriteLine("  1 2 3 4 5 6 7 8 9 10");
             for (int i = 0; i < BoardSize; i++)
             {
-                Console.Write($"{(char)(65+i)}|");
+                Console.Write($"{(char)(65+i)}|");                
                 for (int j = 0; j < BoardSize; j++)
                 {
                     Console.Write($"{BattleField[i,j]}|");
