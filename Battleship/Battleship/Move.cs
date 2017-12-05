@@ -9,5 +9,7 @@ namespace Battleship
     public class Move
     {
         //Turėtų būti atliekami visi veiksmai susiję su ėjimais.
+        //* simboliu žymimas šūvis
+        //X žymima, kai pataikoma
     }
 }
