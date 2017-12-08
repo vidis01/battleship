@@ -13,7 +13,7 @@ namespace Battleship
             var player = new Player();
 
             player.PrintBoards();
-
+            
             Console.ReadKey();
         }
     }

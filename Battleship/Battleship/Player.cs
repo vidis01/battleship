@@ -32,7 +32,6 @@ namespace Battleship
                 }
 
                 Console.Write($"        {(char)(65 + i)}|");
-
                 for (int j = 0; j < OponentBoard.BoardSize; j++)
                 {
                     Console.Write($"{OponentBoard.BattleField[i, j]}|");
