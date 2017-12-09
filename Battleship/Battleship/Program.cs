@@ -10,7 +10,7 @@ namespace Battleship
     {
         static void Main(string[] args)
         {
-            var player = new Player();
+            var player = new Player(); //test
 
             player.PrintBoards();
             
