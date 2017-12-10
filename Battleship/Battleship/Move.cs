@@ -8,6 +8,11 @@ namespace Battleship
 {
     public class Move
     {
+
+    public void Shoot(Player player, Player computerPlayer, bool isComputer = false)
+    {
+        //player.MyBoard
+    }
         //Turėtų būti atliekami visi veiksmai susiję su ėjimais.
         //* simboliu žymimas šūvis
         //X žymima, kai pataikoma

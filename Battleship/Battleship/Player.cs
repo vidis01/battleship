@@ -8,7 +8,7 @@ namespace Battleship
 {
     public class Player
     {
-        public Board MyBoard { get; }
+        public Board MyBoard{ get; }
 
         public Board OponentBoard { get; }
 

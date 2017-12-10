@@ -8,6 +8,11 @@ namespace Battleship
 {
     public class Ship
     {
+        public void DetiLaivus()
+        {
+        
+        }
+        
         //Turėtų būt talpinama visa informacija apie laivą, jo išdėstymą, ar pataikė 
         //jau į jį ar ne ir t.t.
     }
