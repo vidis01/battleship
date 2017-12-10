@@ -4,7 +4,7 @@ namespace Battleship
 {
     public class Board
     {
-        public readonly int BoardSize = 10;
+        public int BoardSize { get; } = 10;
 
         public char[,] BattleField { get; }
 
