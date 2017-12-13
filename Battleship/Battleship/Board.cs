@@ -10,7 +10,7 @@ namespace Battleship
 
         public Board(int boardSize = 10)
         {
-#warning Pagalvoti, gal galima supaprastinti sąlygą? Gal Vytas pataisys.
+//#warning Pagalvoti, gal galima supaprastinti sąlygą? Gal Vytas pataisys.
             if (boardSize >= 26)
             {
                 BoardSize = 26;

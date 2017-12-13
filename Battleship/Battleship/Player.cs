@@ -11,12 +11,13 @@ namespace Battleship
         public Board MyBoard { get; }
 
         public Board OpponentBoard { get; } //vieta, kur player saudo, opponent laivai nematomi
+        public Board OpponentBoardWithShips { get; } // opponent laivai nematomi
 
         public Player()
         {
             MyBoard = new Board();
             OpponentBoard = new Board();
-
+            OpponentBoardWithShips = new Board();
         }
 
         public void PrintBoards()
@@ -34,7 +35,7 @@ namespace Battleship
 
                 Console.Write($"        {(char)(65 + i)}|");
 
-                for (int j = 0; j < OponentBoard.BoardSize; j++)
+                for (int j = 0; j < OpponentBoard.BoardSize; j++)
                 {
                     Console.Write($"{OpponentBoard.BattleField[i, j]}|");
 
@@ -44,5 +45,47 @@ namespace Battleship
             }
 
         }
+        public void RandomLaivai() //tik pradejau, kolkas stato keturvieti gulsciai, tesiu kai laiko turesiu
+        {
+            Random rand = new Random();
+            int r = rand.Next(1, 11);
+            // int puse = rand.Next(1, 3);
+            int puse = 1;
+            // 1- keturvietis, 2 - trivieciai, 3 - dvivieciai, 4 - vienvieciai
+            Console.WriteLine("Ivesk pradines laivo koordinates");
+            int x = int.Parse(Console.ReadLine()); x--;
+            int y = int.Parse(Console.ReadLine()); y--;
+            if (puse == 1)
+            {
+                for (int h = -1; h < 5; h++)
+                {
+                    if (MyBoard.BattleField[y, x + h] != ' ')
+                    {
+                        break;
+                    }
+                }
+                for (int v = -1, vx = y; v < 5; v++)
+                {
+                    if (MyBoard.BattleField[vx-1, x+v] != ' ')
+                    {
+                        break;
+                    }
+                }
+                for (int v = -1, vx = y; v < 5; v++)
+                {
+                    if (MyBoard.BattleField[vx + 1, x + v] != ' ')
+                    {
+                        break;
+                    }
+                }
+                for (int i = 1; i < 5; i++)
+                {
+                    MyBoard.BattleField[y, x++] = 'U';
+                }
+
+            }
+
+        }
+
     }
 }

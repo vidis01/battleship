@@ -10,9 +10,11 @@ namespace Battleship
     {
         static void Main(string[] args)
         {
-                      
-
-            Console.ReadKey();
+            var game = new Game();
+            game.NewGame();
+           
+           
         }
+
     }
 }
