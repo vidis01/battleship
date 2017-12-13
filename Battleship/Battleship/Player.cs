@@ -8,14 +8,15 @@ namespace Battleship
 {
     public class Player
     {
-        public Board MyBoard { get; }
+        public Board MyBoard { get; } //player laivai matomi
 
-        public Board OponentBoard { get; }
+        public Board OpponentBoard { get; } //vieta, kur player saudo, opponent laivai nematomi
 
         public Player()
         {
             MyBoard = new Board();
-            OponentBoard = new Board();
+            OpponentBoard = new Board();
+
         }
 
         public void PrintBoards()
@@ -33,14 +34,15 @@ namespace Battleship
 
                 Console.Write($"        {(char)(65 + i)}|");
 
-                for (int j = 0; j < OponentBoard.BoardSize; j++)
+                for (int j = 0; j < OpponentBoard.BoardSize; j++)
                 {
-                    Console.Write($"{OponentBoard.BattleField[i, j]}|");
+                    Console.Write($"{OpponentBoard.BattleField[i, j]}|");
 
                 }
 
                 Console.WriteLine();
             }
+
         }
     }
 }
