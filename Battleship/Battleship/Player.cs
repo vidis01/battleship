@@ -13,11 +13,15 @@ namespace Battleship
         public Board OpponentBoard { get; } //vieta, kur player saudo, opponent laivai nematomi
         public Board OpponentBoardWithShips { get; } // opponent laivai nematomi
 
+        public List<Ship> Ships { get; set; }
+
         public Player()
         {
             MyBoard = new Board();
             OpponentBoard = new Board();
             OpponentBoardWithShips = new Board();
+            //kai kursi laivus u=pildyk lista
+            Ships = new List<Ship>();
         }
 
         public void PrintBoards()
