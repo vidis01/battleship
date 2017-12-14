@@ -45,46 +45,155 @@ namespace Battleship
             }
 
         }
-        public void RandomLaivai() //tik pradejau, kolkas stato keturvieti gulsciai, tesiu kai laiko turesiu
+        public void RandomLaivai() //Kuria laivus, bet reikia koda tvarkyt dar ir padaryt visiems generavima //ideti var kad znot kieno laivus sukurt
         {
-            Random rand = new Random();
-            int r = rand.Next(1, 11);
-            // int puse = rand.Next(1, 3);
-            int puse = 1;
+            
+   
+            int x = 0, y = 0, tokiuLaivuYra = 1, kelinvietis = 4;
+            int maximum = 0, minimum = 0;
             // 1- keturvietis, 2 - trivieciai, 3 - dvivieciai, 4 - vienvieciai
-            Console.WriteLine("Ivesk pradines laivo koordinates");
-            int x = int.Parse(Console.ReadLine()); x--;
-            int y = int.Parse(Console.ReadLine()); y--;
-            if (puse == 1)
+            for (/*int kelinvietis = 4*/ ; kelinvietis > 0; kelinvietis--)
             {
-                for (int h = -1; h < 5; h++)
+                tokiuLaivuYra = 5 - kelinvietis;
+
+                while (tokiuLaivuYra > 0)
+ 
                 {
-                    if (MyBoard.BattleField[y, x + h] != ' ')
+                    // x = int.Parse(Console.ReadLine()); //
+                    // y = int.Parse(Console.ReadLine()); //
+                    Random rand = new Random();
+                    x = rand.Next(1, 11);
+                    y = rand.Next(1, 11);
+                    // 
+                    Random puse = new Random();
+                    int desinenArZemyn = puse.Next(1, 3); //1 desinen; 2 zemyn
+                    bool flag = true;
+
+                    if (desinenArZemyn == 1)
                     {
-                        break;
+                        if ((x + kelinvietis > MyBoard.BoardSize) || (y + kelinvietis > MyBoard.BoardSize))
+                        {
+                            flag = false;
+                            //break;
+                        }
+                        else
+                        {
+                            for (int h = -1; h < kelinvietis + 1; h++)
+                            {
+                                maximum = x + h;
+                                if (maximum > 10) maximum = 10;
+                                if (maximum < 1) maximum = 1; 
+                                if (MyBoard.BattleField[y-1, maximum-1] == 'U')
+                                {
+                                    flag = false;
+                                   // break;
+                                }
+                            }
+                            for (int v = -1, vx = y; v < 5; v++)
+                            {
+                                maximum = x + v;
+                                if (maximum > 10) maximum = 10;
+                                if (maximum < 1) maximum = 1;
+                                minimum = vx - 1;
+                                if (minimum < 1) minimum = 1;
+                                if (MyBoard.BattleField[minimum-1, maximum-1] == 'U')
+                                {
+                                    flag = false;
+                                    //break;
+                                }
+                            }
+                            for (int v = -1, vx = y; v < 5; v++)
+                            {
+                                maximum = x + v;
+                                if (maximum > 10) maximum = 10;
+                                if (maximum < 1) maximum = 1;
+                                minimum = vx + 1;
+                                if (minimum < 1) minimum = 1;
+                                if (MyBoard.BattleField[minimum-1, maximum-1] == 'U')
+                                {
+                                    flag = false;
+                                   // break;
+                                }
+                            }
+                            
+                        }
+
+                        if (flag)
+                        {
+                            // x--; y--;
+                            for (int i = 1; i < kelinvietis + 1; i++)
+                            {
+                                MyBoard.BattleField[y - 1, x++ - 1] = 'U';
+                                Console.WriteLine("Generuojami laivai....");
+                            }
+
+                            tokiuLaivuYra--;
+                        }
                     }
-                }
-                for (int v = -1, vx = y; v < 5; v++)
-                {
-                    if (MyBoard.BattleField[vx-1, x+v] != ' ')
+                    else
                     {
-                        break;
-                    }
-                }
-                for (int v = -1, vx = y; v < 5; v++)
-                {
-                    if (MyBoard.BattleField[vx + 1, x + v] != ' ')
-                    {
-                        break;
-                    }
-                }
-                for (int i = 1; i < 5; i++)
-                {
-                    MyBoard.BattleField[y, x++] = 'U';
+                        if ((x + kelinvietis > MyBoard.BoardSize) || (y + kelinvietis > MyBoard.BoardSize))
+                        {
+                            flag = false;
+                            //break;
+                        }
+                        for (int v = -1; v < kelinvietis + 1; v++)
+                        {
+                            maximum = y + v;
+                            if (maximum > 10) maximum = 10;
+                            if (maximum < 1) maximum = 1;
+                            if (MyBoard.BattleField[maximum - 1, x-1] == 'U')
+                            {
+                                flag = false;
+                                // break;
+                            }
+                        }
+                        for (int v = -1, vx = x; v < kelinvietis + 1; v++)
+                        {
+                            maximum = y + v;
+                            if (maximum > 10) maximum = 10;
+                            if (maximum < 1) maximum = 1;
+                            minimum = vx - 1;
+                            if (minimum < 1) minimum = 1;
+                            if (MyBoard.BattleField[maximum - 1, minimum - 1] == 'U')
+                            {
+                                flag = false;
+                                //break;
+                            }
+                        }
+                        for (int v = -1, vx = x; v < kelinvietis + 1; v++)
+                        {
+                            maximum = y + v;
+                            if (maximum > 10) maximum = 10;
+                            if (maximum < 1) maximum = 1;
+                            minimum = vx + 1;
+                            if (minimum < 1) minimum = 1;
+                            if (minimum > 10) minimum = 10;
+                            if (MyBoard.BattleField[maximum - 1, minimum - 1] == 'U')
+                            {
+                                flag = false;
+                                // break;
+                            }
+                        }
+
+                        //---
+                        if(flag)
+                        {
+                            // x--; y--;
+                            for (int i = 1; i < kelinvietis + 1; i++)
+                            {
+                                MyBoard.BattleField[y++ - 1, x - 1] = 'U';
+                                Console.WriteLine("Generuojami laivai....");
+                            }
+
+                            tokiuLaivuYra--;
+                        }
+                    }                
+                 
+            
                 }
 
             }
-
         }
 
     }

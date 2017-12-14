@@ -19,10 +19,10 @@ namespace Battleship
             var computerPlayer = new Player();
             var move = new Move();
             bool endgame = false;
-           /* player.RandomLaivai();
-            player.PrintBoards();
-            Console.ReadKey();*/
-             while (!endgame)
+            player.RandomLaivai();
+           // player.PrintBoards();
+           // Console.ReadKey();
+            while (!endgame)
              {
                  player.PrintBoards();
                  if (move.Shoot(player, computerPlayer))

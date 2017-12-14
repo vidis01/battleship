@@ -25,6 +25,10 @@ namespace Battleship
                     {
                         Console.WriteLine("Cia jau buvo sauta. Rinkis kitas koordinates.");
                     }
+                    else if (player.MyBoard.BattleField[y, x] =='U')
+                    {
+                        Console.WriteLine("PATAIKEI!!!!!!");
+                    }
                     else
                     {
                         player.OpponentBoard.BattleField[y, x] = 'o';  //pazymim vieta i kur sauta
