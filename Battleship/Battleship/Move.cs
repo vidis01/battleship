@@ -28,6 +28,7 @@ namespace Battleship
                     else if (player.MyBoard.BattleField[y, x] =='U')
                     {
                         Console.WriteLine("PATAIKEI!!!!!!");
+
                     }
                     else
                     {

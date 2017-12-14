@@ -45,6 +45,7 @@ namespace Battleship
             }
 
         }
+
         public void RandomLaivai() //Kuria laivus, bet reikia koda tvarkyt dar ir padaryt visiems generavima //ideti var kad znot kieno laivus sukurt
         {
             
