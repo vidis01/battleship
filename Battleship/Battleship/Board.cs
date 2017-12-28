@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Battleship
 {
@@ -6,28 +7,12 @@ namespace Battleship
     {
         public int BoardSize { get; } = 10;
 
-        public char[,] BattleField { get; }
+        public Cell[,] BattleField { get; }
 
-        public Board(int boardSize = 10)
+        public Board()
         {
-//#warning Pagalvoti, gal galima supaprastinti sąlygą? Gal Vytas pataisys.
-            if (boardSize >= 26)
-            {
-                BoardSize = 26;
-            }
-            else
-            {
-                if (boardSize < 10)
-                {
-                    BoardSize = 10;
-                }
-                else
-                {
-                    BoardSize = boardSize;
-                }
-            }
-
-            BattleField = new char[BoardSize, BoardSize];
+            BattleField = new Cell[BoardSize, BoardSize];
+            InitializeBoard();
         }
 
         public void PrintBoard()
@@ -38,9 +23,20 @@ namespace Battleship
                 Console.Write($"{(char)(65+i)}|");                
                 for (int j = 0; j < BoardSize; j++)
                 {
-                    Console.Write($"{BattleField[i,j]}|");
+                    Console.Write($"{(char)BattleField[i,j].CellValue}|");
                 }
                 Console.WriteLine();
+            }
+        }
+
+        private void InitializeBoard()
+        {
+            for (int i = 0; i < BoardSize; i++)
+            {
+                for (int j = 0; j < BoardSize; j++)
+                {
+                    BattleField[i, j] = new Cell();
+                }
             }
         }
        

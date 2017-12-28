@@ -21,18 +21,18 @@ namespace Battleship
                     y = int.Parse(Console.ReadLine());
                     if ( (y > player.MyBoard.BoardSize) || (x > player.MyBoard.BoardSize) ) //dar reikia tikrinti 0, minusa
                         Console.WriteLine("Per dideli skaiciai.");
-                    else if ( (player.OpponentBoard.BattleField[--y, --x] == 'o') || (player.OpponentBoard.BattleField[y, x] == 'x') )
+                    else if ( (player.OpponentBoard.BattleField[--y, --x].CellValue == CellValue.MISSED_SHOOT) || (player.OpponentBoard.BattleField[y, x].CellValue == CellValue.HITTED_SHIP) )
                     {
                         Console.WriteLine("Cia jau buvo sauta. Rinkis kitas koordinates.");
                     }
-                    else if (player.MyBoard.BattleField[y, x] =='U')
+                    else if (player.MyBoard.BattleField[y, x].CellValue == CellValue.WITH_SHIP)
                     {
                         Console.WriteLine("PATAIKEI!!!!!!");
-
+                        player.MyBoard.BattleField[y, x].CellValue = CellValue.HITTED_SHIP;
                     }
                     else
                     {
-                        player.OpponentBoard.BattleField[y, x] = 'o';  //pazymim vieta i kur sauta
+                        player.OpponentBoard.BattleField[y, x].CellValue = CellValue.MISSED_SHOOT;  //pazymim vieta i kur sauta
                         ejimas++;
                         gerai = true;
                        

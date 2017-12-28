@@ -8,19 +8,18 @@ namespace Battleship
 {
     public class Ship
     {
-        public int Seats { get; }
+        public int Seats { get; } //keliu vietu 1..4
 
-        public int [] Coordinates { get; }
+        public Orientation? Orientation { get; set; } = null; //horizontalus ar vertikalus
 
-        public bool IsDead { get; set; } = false;
+        public Coordinate [] Coordinates { get; } 
+
+        public bool IsDead { get; set; } = false; //kai pilnai nusauna nustatyti => true
 
         public Ship(int seats)
         {
             Seats = seats;
-            Coordinates = new int[seats];
-        }
-        //Turėtų būt talpinama visa informacija apie laivą, jo išdėstymą, ar pataikė 
-        //jau į jį ar ne ir t.t.
-         
+            Coordinates = new Coordinate[seats];
+        }         
     }
 }

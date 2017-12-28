@@ -8,14 +8,19 @@ namespace Battleship
 {
     public class Coordinate
     {
-        public int X { get; }
+        public Row Row { get; } // A, B, ... J
 
-        public int Y { get; }
+        public int Column { get; } // 1, 2, ... 10
 
-        public Coordinate(int x, int y)
+        public Coordinate(Row row, int column)
         {
-            X = x;
-            Y = y;
+            Row = row;
+
+            if (column<1 || column>10)
+            {
+                new ArgumentException($"{nameof(Column)} not in range 1 <= value <= 10. ");
+            }
+            Column = column;
         }
     }
 }

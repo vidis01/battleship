@@ -13,15 +13,26 @@ namespace Battleship
         public Board OpponentBoard { get; } //vieta, kur player saudo, opponent laivai nematomi
         public Board OpponentBoardWithShips { get; } // opponent laivai nematomi
 
-        public List<Ship> Ships { get; set; }
+        public Dictionary<ShipType, Ship> Ships { get; set; }
 
         public Player()
         {
             MyBoard = new Board();
             OpponentBoard = new Board();
             OpponentBoardWithShips = new Board();
-            //kai kursi laivus u=pildyk lista
-            Ships = new List<Ship>();
+
+            Ships = new Dictionary<ShipType, Ship>();
+
+            Ships.Add(ShipType.FOUR_SEATS, new Ship(4));
+            Ships.Add(ShipType.THREE_SEATS_1, new Ship(3));
+            Ships.Add(ShipType.THREE_SEATS_2, new Ship(3));
+            Ships.Add(ShipType.TWO_SEATS_1, new Ship(2));
+            Ships.Add(ShipType.TWO_SEATS_2, new Ship(2));
+            Ships.Add(ShipType.TWO_SEATS_3, new Ship(2));
+            Ships.Add(ShipType.ONE_SEAT_1, new Ship(1));
+            Ships.Add(ShipType.ONE_SEAT_2, new Ship(1));
+            Ships.Add(ShipType.ONE_SEAT_3, new Ship(1));
+            Ships.Add(ShipType.ONE_SEAT_4, new Ship(1));
         }
 
         public void PrintBoards()
@@ -33,7 +44,7 @@ namespace Battleship
                 Console.Write($"{(char)(65 + i)}|");
                 for (int j = 0; j < MyBoard.BoardSize; j++)
                 {
-                    Console.Write($"{MyBoard.BattleField[i, j]}|");
+                    Console.Write($"{(char)MyBoard.BattleField[i, j].CellValue}|");
 
                 }
 
@@ -41,7 +52,7 @@ namespace Battleship
 
                 for (int j = 0; j < OpponentBoard.BoardSize; j++)
                 {
-                    Console.Write($"{OpponentBoard.BattleField[i, j]}|");
+                    Console.Write($"{(char)OpponentBoard.BattleField[i, j].CellValue}|");
 
                 }
 
@@ -88,7 +99,7 @@ namespace Battleship
                                 maximum = x + h;
                                 if (maximum > 10) maximum = 10;
                                 if (maximum < 1) maximum = 1; 
-                                if (MyBoard.BattleField[y-1, maximum-1] == 'U')
+                                if (MyBoard.BattleField[y-1, maximum-1].CellValue == CellValue.WITH_SHIP)
                                 {
                                     flag = false;
                                    // break;
@@ -101,7 +112,7 @@ namespace Battleship
                                 if (maximum < 1) maximum = 1;
                                 minimum = vx - 1;
                                 if (minimum < 1) minimum = 1;
-                                if (MyBoard.BattleField[minimum-1, maximum-1] == 'U')
+                                if (MyBoard.BattleField[minimum-1, maximum-1].CellValue == CellValue.WITH_SHIP)
                                 {
                                     flag = false;
                                     //break;
@@ -114,7 +125,7 @@ namespace Battleship
                                 if (maximum < 1) maximum = 1;
                                 minimum = vx + 1;
                                 if (minimum < 1) minimum = 1;
-                                if (MyBoard.BattleField[minimum-1, maximum-1] == 'U')
+                                if (MyBoard.BattleField[minimum-1, maximum-1].CellValue == CellValue.WITH_SHIP)
                                 {
                                     flag = false;
                                    // break;
@@ -128,7 +139,7 @@ namespace Battleship
                             // x--; y--;
                             for (int i = 1; i < kelinvietis + 1; i++)
                             {
-                                MyBoard.BattleField[y - 1, x++ - 1] = 'U';
+                                MyBoard.BattleField[y - 1, x++ - 1].CellValue = CellValue.WITH_SHIP;
                                 Console.WriteLine("Generuojami laivai....");
                             }
 
@@ -147,7 +158,7 @@ namespace Battleship
                             maximum = y + v;
                             if (maximum > 10) maximum = 10;
                             if (maximum < 1) maximum = 1;
-                            if (MyBoard.BattleField[maximum - 1, x-1] == 'U')
+                            if (MyBoard.BattleField[maximum - 1, x-1].CellValue == CellValue.WITH_SHIP)
                             {
                                 flag = false;
                                 // break;
@@ -160,7 +171,7 @@ namespace Battleship
                             if (maximum < 1) maximum = 1;
                             minimum = vx - 1;
                             if (minimum < 1) minimum = 1;
-                            if (MyBoard.BattleField[maximum - 1, minimum - 1] == 'U')
+                            if (MyBoard.BattleField[maximum - 1, minimum - 1].CellValue == CellValue.WITH_SHIP)
                             {
                                 flag = false;
                                 //break;
@@ -174,7 +185,7 @@ namespace Battleship
                             minimum = vx + 1;
                             if (minimum < 1) minimum = 1;
                             if (minimum > 10) minimum = 10;
-                            if (MyBoard.BattleField[maximum - 1, minimum - 1] == 'U')
+                            if (MyBoard.BattleField[maximum - 1, minimum - 1].CellValue == CellValue.WITH_SHIP)
                             {
                                 flag = false;
                                 // break;
@@ -187,7 +198,7 @@ namespace Battleship
                             // x--; y--;
                             for (int i = 1; i < kelinvietis + 1; i++)
                             {
-                                MyBoard.BattleField[y++ - 1, x - 1] = 'U';
+                                MyBoard.BattleField[y++ - 1, x - 1].CellValue = CellValue.WITH_SHIP;
                                 Console.WriteLine("Generuojami laivai....");
                             }
 
