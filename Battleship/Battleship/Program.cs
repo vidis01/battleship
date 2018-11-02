@@ -13,7 +13,7 @@ namespace Battleship
             var game = new Game();
             game.NewGame();
            
-           
+            //testuoju   
         }
 
     }
